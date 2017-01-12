@@ -27,20 +27,25 @@ public void setup() {
 		wordsPerLine[i] = wordCount;
 		wordCount = 0;
 	}
-
+	//System.out.println(wordsPerLine[4]);
 	//String realLowellHymn[] = new String[wordCount];
 	//for (int i = 0; i < realLowellHymn.length; i++)
 	// Work here!!!!
 	int wordNumber = 0;
 	for (int i = 0; i < lowellHymn.length; i++)
 	{
-		for (int j = 0; j < wordsPerLine[i]-1; j++)
+		if (wordsPerLine[i] == 0)
+			System.out.println();
+		else
 		{
-			System.out.print(pigLatin(realLowellHymn.get(wordNumber)) + " ");
+			for (int j = 0; j < wordsPerLine[i]-1; j++)
+			{
+				System.out.print(pigLatin(realLowellHymn.get(wordNumber)) + " ");
+				wordNumber++;
+			}
+			System.out.println(pigLatin(realLowellHymn.get(wordNumber)) + " ");
 			wordNumber++;
 		}
-		System.out.println(pigLatin(realLowellHymn.get(wordNumber)) + " ");
-		wordNumber++;
 	}
 }
 public void draw()
@@ -73,8 +78,16 @@ public String pigLatin(String sWord)
 			return sWord + "way";
 		else
 		{
-			String modified = sWord.substring(findFirstVowel(sWord));
-			return modified + sWord.substring(0, findFirstVowel(sWord)) + "ay";
+			if (sWord.substring(0,1).equals(sWord.substring(0,1).toUpperCase()))
+			{
+				String modified = sWord.substring(findFirstVowel(sWord), findFirstVowel(sWord)+1).toUpperCase() + sWord.substring(findFirstVowel(sWord)+1);
+				return modified + sWord.substring(0, findFirstVowel(sWord)).toLowerCase() + "ay";
+			}
+			else 
+			{
+				String modified = sWord.substring(findFirstVowel(sWord));
+				return modified + sWord.substring(0, findFirstVowel(sWord)) + "ay";
+			}
 		}
 	}
 }
