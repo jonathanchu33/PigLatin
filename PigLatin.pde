@@ -27,9 +27,7 @@ public void setup() {
 		wordsPerLine[i] = wordCount;
 		wordCount = 0;
 	}
-	//System.out.println(wordsPerLine[4]);
-	//String realLowellHymn[] = new String[wordCount];
-	//for (int i = 0; i < realLowellHymn.length; i++)
+
 	// Work here!!!!
 	int wordNumber = 0;
 	for (int i = 0; i < lowellHymn.length; i++)
@@ -67,7 +65,12 @@ public String pigLatin(String sWord)
 //postcondition: returns the pig latin equivalent of sWord
 {
 	if (sWord.length()>1 && sWord.substring(0, 2).equalsIgnoreCase("qu"))
-		return sWord.substring(2) + "quay";
+	{
+		if (sWord.substring(0,1).equals(sWord.substring(0,1).toUpperCase()))
+			return sWord.substring(2,3).toUpperCase() + sWord.substring(3) + "quay";
+		else
+			return sWord.substring(2) + "quay";
+	}
 	else if (sWord.length()==0)
 		return sWord;
 	else 
